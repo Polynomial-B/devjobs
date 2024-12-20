@@ -71,17 +71,16 @@ body::-webkit-scrollbar {
 }
 
 .first-heading {
-	font-size: 31px;
+	font-size: 30px;
 	font-weight: 400;
-	color: #fff;
-
+	color: #f4f5f7;
 	font-size: 27px;
 	display: none;
 }
 
 .second-heading {
-	font-size: 23px;
-	color: #fff;
+	font-size: 22px;
+	color: #f4f5f7;
 	font-weight: 500;
 }
 
@@ -105,7 +104,11 @@ body::-webkit-scrollbar {
 	left: 0;
 	z-index: -2;
 	overflow: hidden;
-	background-image: linear-gradient(125deg, #1f74f1 -10%, #0850b9 100%);
+	background-image: linear-gradient(
+		125deg,
+		hsl(293, 84%, 45%) -10%,
+		hsl(256, 88%, 39%) 100%
+	);
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -205,7 +208,7 @@ body::-webkit-scrollbar {
 .bookmarks-btn--active,
 .bookmarks-btn:hover,
 .bookmarks-btn:focus {
-	color: rgba(255, 255, 255, 1);
+	color: #f4f5f7;
 }
 
 .bookmarks-btn--active .bookmarks-btn__icon,
@@ -222,12 +225,12 @@ body::-webkit-scrollbar {
 	transition: all 0.2s;
 }
 .job-list {
-	background-color: #fff;
+	background-color: #f4f5f7;
 	position: relative;
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	scrollbar-color: #cacdd0 #ffffff;
+	scrollbar-color: #cacdd0 #f4f5f7;
 	scrollbar-width: thin;
 }
 
@@ -310,7 +313,7 @@ body::-webkit-scrollbar {
 .job-item {
 	cursor: pointer;
 	transition: background-color 0.2s;
-	background-color: #fff;
+	background-color: #f4f5f7;
 	height: 76px;
 }
 
@@ -381,18 +384,17 @@ body::-webkit-scrollbar {
 
 .job-item__right svg {
 	font-size: 14px;
-
 	cursor: pointer;
 	color: #d7dbe0;
 	transition: all 0.2s;
 }
 
 .job-item__right svg.filled {
-	color: #2671dd;
+	color: #bc133d;
 }
 
 .job-item__bookmark-icon--bookmarked {
-	color: #2671dd;
+	color: #bc133d;
 }
 
 .job-item__time {
@@ -413,7 +415,6 @@ body::-webkit-scrollbar {
 	flex-direction: column;
 	align-items: center;
 	row-gap: 33px;
-
 	margin-top: 20px;
 	row-gap: 20px;
 }
@@ -760,7 +761,7 @@ body::-webkit-scrollbar {
 }
 
 .bookmark-btn:hover svg {
-	color: #2671dd;
+	color: #bc133d;
 }
 
 .bookmark-btn svg {
@@ -770,7 +771,7 @@ body::-webkit-scrollbar {
 }
 
 .bookmark-btn .filled {
-	color: #2671dd;
+	color: #bc133d;
 }
 
 .job-info__company {
@@ -950,7 +951,7 @@ body::-webkit-scrollbar {
 }
 
 .error {
-	background: #fff;
+	background: #f4f5f7;
 	padding: 14px 20px;
 	width: 280px;
 	min-height: 46px;
