@@ -98,10 +98,8 @@ body::-webkit-scrollbar {
 
 .background {
 	position: absolute;
-	height: 210px;
+	height: 100vh;
 	width: 100%;
-	top: 0;
-	left: 0;
 	z-index: -2;
 	overflow: hidden;
 	background-image: linear-gradient(
@@ -109,28 +107,6 @@ body::-webkit-scrollbar {
 		hsl(293, 84%, 45%) -10%,
 		hsl(256, 88%, 39%) 100%
 	);
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-}
-
-.background::before {
-	content: "";
-	background-image: linear-gradient(
-		-180deg,
-		rgba(0, 0, 0, 0.025) 0,
-		rgba(0, 0, 0, 0.075) 99%
-	);
-	position: absolute;
-	inset: 0;
-}
-
-.background > img {
-	position: absolute;
-	top: -25px;
-	left: 0;
-	z-index: -1;
-	user-select: none;
-
-	transform: scale(1.1);
 }
 
 .header {
