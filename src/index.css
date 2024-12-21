@@ -147,17 +147,7 @@ body::-webkit-scrollbar {
 	transform: translateY(3px);
 }
 
-.logo {
-	margin-left: -8px;
-	user-select: none;
-}
-
-.logo__img {
-	margin-bottom: -5px;
-}
-
 .bookmarks-btn {
-	text-transform: lowercase;
 	font-size: 13px;
 	color: rgba(255, 255, 255, 0.75);
 	margin-left: 13px;
@@ -187,19 +177,12 @@ body::-webkit-scrollbar {
 	color: #f4f5f7;
 }
 
-.bookmarks-btn--active .bookmarks-btn__icon,
-.bookmarks-btn:hover .bookmarks-btn__icon,
-.bookmarks-btn:focus .bookmarks-btn__icon {
+.bookmarks-btn--active,
+.bookmarks-btn:hover,
+.bookmarks-btn:focus {
 	color: rgba(255, 255, 255, 0.8);
 }
 
-.bookmarks-btn__icon {
-	font-size: 10px;
-	margin-left: 2px;
-	transform: translateY(-1px);
-	color: rgba(255, 255, 255, 0.6);
-	transition: all 0.2s;
-}
 .job-list {
 	background-color: #f4f5f7;
 	position: relative;
@@ -463,7 +446,7 @@ body::-webkit-scrollbar {
 	margin-right: auto;
 	height: 616px;
 	width: 976px;
-	background-color: #fff;
+	background-color: #e8ebef;
 	border-radius: 8px;
 	display: flex;
 	border-top-right-radius: 9px;
@@ -740,7 +723,7 @@ body::-webkit-scrollbar {
 	color: #bc133d;
 }
 
-.bookmark-btn svg {
+.bookmark-btn {
 	color: #d7dbe0;
 	transition: all 0.2s;
 	font-size: 18px;
