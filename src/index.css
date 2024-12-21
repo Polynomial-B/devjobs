@@ -694,7 +694,8 @@ body::-webkit-scrollbar {
 .job-info__badge {
 	width: 55px;
 	height: 70px;
-	background-color: #d0d335;
+	background-color: rgb(194, 245, 255);
+	box-shadow: 0 5px 8px rgba(0, 0, 0, 0.674);
 	border-radius: 5px;
 	display: flex;
 	align-items: center;
