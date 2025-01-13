@@ -105,7 +105,7 @@ body::-webkit-scrollbar {
 	background-image: linear-gradient(
 		125deg,
 		hsl(293, 84%, 45%) -10%,
-		hsl(256, 88%, 39%) 100%
+		hsl(262, 68%, 40%) 100%
 	);
 }
 
