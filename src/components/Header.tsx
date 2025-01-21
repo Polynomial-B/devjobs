@@ -1,8 +1,9 @@
+import { HeaderProps } from "../lib/types";
 import BookmarksButton from "./BookmarksButton";
 import Logo from "./Logo";
 import SearchForm from "./SearchForm";
 
-export default function Header({ searchText, setSearchText }) {
+export default function Header({ searchText, setSearchText }: HeaderProps) {
 	return (
 		<header className="header">
 			<div className="header__top">

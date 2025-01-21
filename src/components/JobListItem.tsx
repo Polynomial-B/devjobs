@@ -1,20 +1,20 @@
 import { JobItemsProps } from "../lib/types";
 import BookmarkIcon from "./BookmarkIcon";
 
-export default function JobListItem({ jobItem }: JobItemsProps) {
+export default function JobListItem({ jobItems }: JobItemsProps) {
 	return (
 		<li className="job-item">
 			<a className="job-item__link">
-				<div className="job-item__badge">{jobItem.badgeLetters}</div>
+				<div className="job-item__badge">{jobItems.badgeLetters}</div>
 
 				<div className="job-item__middle">
-					<h3 className="third-heading">{jobItem.title}</h3>
-					<p className="job-item__company">{jobItem.company}</p>
+					<h3 className="third-heading">{jobItems.title}</h3>
+					<p className="job-item__company">{jobItems.company}</p>
 				</div>
 
 				<div className="job-item__right">
 					<BookmarkIcon />
-					<time className="job-item__time">{jobItem.date}</time>
+					<time className="job-item__time">{jobItems.daysAgo}d</time>
 				</div>
 			</a>
 		</li>

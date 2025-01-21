@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { HeaderProps } from "../lib/types";
 
-export default function SearchForm({ searchText, setSearchText }) {
+export default function SearchForm({ searchText, setSearchText }: HeaderProps) {
 	return (
 		<form action="#" className="search">
 			<button type="submit">
