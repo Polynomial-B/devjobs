@@ -1,4 +1,4 @@
-export type JobItem = {
+export type JobItems = {
   id: number;
   badgeLetters: string;
   title: string;
@@ -9,5 +9,9 @@ export type JobItem = {
 };
 
 export type JobItemsProps = {
-  jobItem: JobItem;
+  jobItems: JobItems;
+};
+export type HeaderProps = {
+  searchText: string;
+  setSearchText: React.Dispatch<React.SetStateAction<string>>;
 };
