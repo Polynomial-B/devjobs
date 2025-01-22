@@ -15,3 +15,8 @@ export type HeaderProps = {
   searchText: string;
   setSearchText: React.Dispatch<React.SetStateAction<string>>;
 };
+
+export type ContainerProps = {
+  jobItems: JobItems;
+  isLoading: boolean;
+};
