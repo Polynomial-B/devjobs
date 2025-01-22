@@ -444,7 +444,7 @@ body::-webkit-scrollbar {
 	margin-top: 27px;
 	margin-left: auto;
 	margin-right: auto;
-	height: 616px;
+	height: 616px !important;
 	width: 976px;
 	background-color: #e8ebef;
 	border-radius: 8px;
