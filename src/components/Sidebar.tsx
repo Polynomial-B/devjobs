@@ -1,17 +1,17 @@
-import { JobItemsProps } from "../lib/types";
+import { ContainerProps } from "../lib/types";
 import JobList from "./JobList";
 import PaginationControls from "./PaginationControls";
 import ResultsCount from "./ResultsCount";
 import SortingControls from "./SortingControls";
 
-export default function Sidebar({ jobItems }: JobItemsProps) {
+export default function Sidebar({ jobItems, isLoading }: ContainerProps) {
 	return (
 		<div className="sidebar">
 			<div className="sidebar__top">
 				<ResultsCount />
 				<SortingControls />
 			</div>
-			<JobList jobItems={jobItems} />
+			<JobList jobItems={jobItems} isLoading={isLoading} />
 			<PaginationControls />
 		</div>
 	);

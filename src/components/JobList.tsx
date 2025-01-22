@@ -1,7 +1,16 @@
-import { JobItems, JobItemsProps } from "../lib/types";
+import { ContainerProps, JobItems } from "../lib/types";
 import JobListItem from "./JobListItem";
+import Spinner from "./Spinner";
 
-export function JobList({ jobItems }: JobItemsProps) {
+export function JobList({ jobItems, isLoading }: ContainerProps) {
+	if (isLoading) {
+		return (
+			<ul className="job-list">
+				<Spinner />
+			</ul>
+		);
+	}
+
 	if (Array.isArray(jobItems)) {
 		return (
 			<ul className="job-list">
