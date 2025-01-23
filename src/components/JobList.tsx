@@ -15,7 +15,7 @@ export function JobList({ jobItems, isLoading }: ContainerProps) {
 		return (
 			<ul className="job-list">
 				{jobItems.map((jobItem: JobItems) => {
-					return <JobListItem jobItems={jobItem} />;
+					return <JobListItem key={jobItem.id} jobItems={jobItem} />;
 				})}
 			</ul>
 		);
