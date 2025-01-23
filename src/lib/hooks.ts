@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { JobItems } from "./types";
 
 export function useJobItems(searchText: string) {
-  const [jobItems, setJobItems] = useState([]);
+  const [jobItems, setJobItems] = useState<JobItems[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
+  const slicedJobItems = jobItems.slice(0, 7);
 
   useEffect(() => {
     if (!searchText) return;
@@ -19,5 +21,5 @@ export function useJobItems(searchText: string) {
     };
     fetchData();
   }, [searchText]);
-  return { isLoading, jobItems };
+  return { isLoading, jobItems: slicedJobItems } as const;
 }
