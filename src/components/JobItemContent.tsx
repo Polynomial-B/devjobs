@@ -91,13 +91,13 @@ export default function JobItemContent() {
 					</section>
 				</div>
 
-				<footer className="job-details__footer">
+				{/* <footer className="job-details__footer">
 					<p className="job-details__footer-text">
 						If possible, please reference that you found the job on{" "}
 						<span className="u-bold">rmtDev</span>, we would really
 						appreciate it!
 					</p>
-				</footer>
+				</footer> */}
 			</div>
 		</section>
 	);
@@ -109,10 +109,7 @@ function EmptyJobContent() {
 			<div>
 				<div className="job-details__start-view">
 					<p>What are you looking for?</p>
-					<p>
-						Start by searching for any technology your ideal job is
-						working with
-					</p>
+					<p>Start by searching using the task bar above.</p>
 				</div>
 			</div>
 		</section>

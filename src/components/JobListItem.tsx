@@ -4,7 +4,7 @@ import BookmarkIcon from "./BookmarkIcon";
 export default function JobListItem({ jobItems }: JobItemsProps) {
 	return (
 		<li className="job-item">
-			<a className="job-item__link">
+			<a className="job-item__link" href={`#${jobItems.id}`}>
 				<div className="job-item__badge">{jobItems.badgeLetters}</div>
 
 				<div className="job-item__middle">
