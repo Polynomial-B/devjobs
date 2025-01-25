@@ -1,7 +1,8 @@
+import { ContainerProps } from "../lib/types";
 import BookmarkIcon from "./BookmarkIcon";
 
-export default function JobItemContent() {
-	return <EmptyJobContent />;
+export default function JobItemContent({ displayedItem }: ContainerProps) {
+	if (!displayedItem) return <EmptyJobContent />;
 
 	return (
 		<section className="job-details">
