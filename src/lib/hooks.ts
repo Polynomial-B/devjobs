@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { JobItems } from "./types";
+import { API_URL } from "./constants";
 
 export function useJobItems(searchText: string) {
   const [jobItems, setJobItems] = useState<JobItems[]>([]);
@@ -12,9 +13,7 @@ export function useJobItems(searchText: string) {
 
     const fetchData = async () => {
       setIsLoading(true);
-      const res = await fetch(
-        `https://bytegrad.com/course-assets/projects/rmtdev/api/data?search=${searchText}`
-      );
+      const res = await fetch(`${API_URL}?search=${searchText}`);
       const data = await res.json();
       setIsLoading(false);
       setJobItems(data.jobItems);
@@ -22,4 +21,40 @@ export function useJobItems(searchText: string) {
     fetchData();
   }, [searchText]);
   return { isLoading, jobItems: slicedJobItems } as const;
+}
+
+export function useParamId() {
+  const [param, setParam] = useState<number | null>(null);
+  useEffect(() => {
+    const handleHashChange = () => {
+      const id = +window.location.hash.slice(1);
+      setParam(id);
+    };
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+  return param;
+}
+
+export function useDisplayedItem(paramId: number | null) {
+  const [displayedItem, setDisplayedItem] = useState<object | null>(null);
+
+  useEffect(() => {
+    if (!paramId) return;
+    // setIsLoading(true)
+    const fetchData = async () => {
+      const res = await fetch(`${API_URL}/${paramId}`);
+      if (res.ok) {
+        const data = await res.json();
+        setDisplayedItem(data.jobItem);
+        // setIsLoading(false)
+      }
+    };
+    fetchData();
+  }, [paramId]);
+  return displayedItem;
 }
