@@ -8,6 +8,23 @@ export type JobItems = {
   daysAgo: number;
 };
 
+export type JobItemDetails = {
+  badgeLetters: string;
+  company: string;
+  companyURL: string;
+  coverImgURL: string;
+  daysAgo: number;
+  description: string;
+  duration: string;
+  id: number;
+  location: string;
+  qualifications: string[];
+  relevanceScore: number;
+  reviews: string[];
+  salary: string;
+  title: string;
+};
+
 export type JobItemsProps = {
   jobItems: JobItems;
 };
@@ -17,6 +34,7 @@ export type HeaderProps = {
 };
 
 export type ContainerProps = {
-  jobItems: JobItems;
-  isLoading: boolean;
+  jobItems?: JobItems;
+  isLoading?: boolean;
+  displayedItem?: JobItemDetails | null;
 };
