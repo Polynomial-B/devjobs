@@ -2,7 +2,6 @@ import { ContainerProps } from "../lib/types";
 import BookmarkIcon from "./BookmarkIcon";
 
 export default function JobItemContent({ displayedItem }: ContainerProps) {
-	console.log(displayedItem);
 	if (!displayedItem) {
 		return <EmptyJobContent />;
 	}
