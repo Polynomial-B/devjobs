@@ -8,21 +8,15 @@ export type JobItems = {
   daysAgo: number;
 };
 
-export type JobItemDetails = {
-  badgeLetters: string;
-  company: string;
+export type JobItemDetails = JobItems & {
   companyURL: string;
   coverImgURL: string;
-  daysAgo: number;
   description: string;
   duration: string;
-  id: number;
   location: string;
   qualifications: string[];
-  relevanceScore: number;
   reviews: string[];
   salary: string;
-  title: string;
 };
 
 export type JobItemsProps = {
