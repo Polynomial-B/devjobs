@@ -30,5 +30,4 @@ export type HeaderProps = {
 export type ContainerProps = {
   jobItems?: JobItems;
   isLoading?: boolean;
-  displayedItem?: JobItemDetails | null;
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { JobItems } from "./types";
+import { JobItemDetails, JobItems } from "./types";
 import { API_URL } from "./constants";
 
 export function useJobItems(searchText: string) {
@@ -41,7 +41,9 @@ export function useParamId() {
 }
 
 export function useDisplayedItem(paramId: number | null) {
-  const [displayedItem, setDisplayedItem] = useState<object | null>(null);
+  const [displayedItem, setDisplayedItem] = useState<JobItemDetails | null>(
+    null
+  );
 
   useEffect(() => {
     if (!paramId) return;

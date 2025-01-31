@@ -1,7 +1,10 @@
-import { ContainerProps } from "../lib/types";
+import { useDisplayedItem, useParamId } from "../lib/hooks";
 import BookmarkIcon from "./BookmarkIcon";
 
-export default function JobItemContent({ displayedItem }: ContainerProps) {
+export default function JobItemContent() {
+	const paramId = useParamId();
+	const displayedItem = useDisplayedItem(paramId);
+
 	if (!displayedItem) {
 		return <EmptyJobContent />;
 	}
