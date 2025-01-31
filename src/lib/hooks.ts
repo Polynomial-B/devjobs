@@ -4,7 +4,6 @@ import { API_URL } from "./constants";
 
 export function useJobItems(searchText: string) {
   const [jobItems, setJobItems] = useState<JobItems[]>([]);
-
   const [isLoading, setIsLoading] = useState(false);
   const slicedJobItems = jobItems.slice(0, 7);
 
@@ -44,19 +43,20 @@ export function useDisplayedItem(paramId: number | null) {
   const [displayedItem, setDisplayedItem] = useState<JobItemDetails | null>(
     null
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!paramId) return;
-    // setIsLoading(true)
+    setIsLoading(true);
     const fetchData = async () => {
       const res = await fetch(`${API_URL}/${paramId}`);
       if (res.ok) {
         const data = await res.json();
+        setIsLoading(false);
         setDisplayedItem(data.jobItem);
-        // setIsLoading(false)
       }
     };
     fetchData();
   }, [paramId]);
-  return displayedItem;
+  return [displayedItem, isLoading] as const;
 }

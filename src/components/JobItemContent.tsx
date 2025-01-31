@@ -1,10 +1,20 @@
 import { useDisplayedItem, useParamId } from "../lib/hooks";
 import BookmarkIcon from "./BookmarkIcon";
+import Spinner from "./Spinner";
 
 export default function JobItemContent() {
 	const paramId = useParamId();
-	const displayedItem = useDisplayedItem(paramId);
+	const [displayedItem, isLoading] = useDisplayedItem(paramId);
 
+	if (isLoading) {
+		return (
+			<section className="job-details">
+				<div>
+					<Spinner />
+				</div>
+			</section>
+		);
+	}
 	if (!displayedItem) {
 		return <EmptyJobContent />;
 	}
