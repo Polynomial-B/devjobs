@@ -285,7 +285,10 @@ body::-webkit-scrollbar {
 }
 
 .job-item--active {
-	background-color: #f4f5f7;
+	background-color: #d0d5e7;
+}
+.job-item--active:hover {
+	background-color: #cea1db;
 }
 
 .job-item__link {
