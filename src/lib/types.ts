@@ -21,6 +21,7 @@ export type JobItemDetails = JobItems & {
 
 export type JobItemsProps = {
   jobItems: JobItems;
+  isActive: boolean;
 };
 export type HeaderProps = {
   searchText: string;
@@ -30,4 +31,5 @@ export type HeaderProps = {
 export type ContainerProps = {
   jobItems?: JobItems;
   isLoading?: boolean;
+  isActive?: boolean;
 };
