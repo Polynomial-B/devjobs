@@ -7,13 +7,17 @@ import { useJobItems } from "./lib/hooks";
 
 function App() {
 	const [searchText, setSearchText] = useState("");
-	const { jobItems, isLoading } = useJobItems(searchText);
+	const { jobItems, isLoading, totalJobCount } = useJobItems(searchText);
 
 	return (
 		<>
 			<Background />
 			<Header searchText={searchText} setSearchText={setSearchText} />
-			<Container jobItems={jobItems} isLoading={isLoading} />
+			<Container
+				jobItems={jobItems}
+				isLoading={isLoading}
+				totalJobCount={totalJobCount}
+			/>
 			<Footer />
 		</>
 	);

@@ -32,4 +32,5 @@ export type ContainerProps = {
   jobItems?: JobItems;
   isLoading?: boolean;
   isActive?: boolean;
+  totalJobCount?: number;
 };

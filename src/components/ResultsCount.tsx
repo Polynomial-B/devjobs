@@ -1,3 +1,5 @@
-export default function ResultsCount() {
-  return <p className="count">0 results</p>;
+import { ContainerProps } from "../lib/types";
+
+export default function ResultsCount({ totalJobCount }: ContainerProps) {
+	return <p className="count">{totalJobCount} results</p>;
 }
