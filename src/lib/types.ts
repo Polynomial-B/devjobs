@@ -29,7 +29,7 @@ export type HeaderProps = {
 };
 
 export type ContainerProps = {
-  jobItems?: JobItems;
+  jobItems?: JobItems[];
   isLoading?: boolean;
   isActive?: boolean;
   totalJobCount?: number;
