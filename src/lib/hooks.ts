@@ -20,22 +20,24 @@ export function useParamId() {
   return param;
 }
 
+const fetchJobItem = async (paramId: number | null) => {
+  const res = await fetch(`${API_URL}/${paramId}`);
+  if (res.ok) {
+    const data = await res.json();
+    return data;
+  } else {
+    throw new Error("404: Bad request");
+  }
+};
+
 export function useDisplayedItem(paramId: number | null) {
   const { data, isLoading } = useQuery({
     queryKey: ["job-item", paramId],
-    queryFn: async () => {
-      const res = await fetch(`${API_URL}/${paramId}`);
-      if (res.ok) {
-        const data = await res.json();
-        return data;
-      } else {
-        throw new Error("404: Bad request");
-      }
-    },
+    queryFn: () => fetchJobItem(paramId),
     onError: () => {
       console.error("Error fetching job item: ");
     },
-    enabled: Boolean(paramId),
+    enabled: !!paramId, // same as Boolean(paramId)
   });
   const jobItem = data?.jobItem;
   return [jobItem, isLoading] as const;
