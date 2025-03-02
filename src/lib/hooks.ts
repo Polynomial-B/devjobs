@@ -1,6 +1,45 @@
 import { useEffect, useState } from "react";
-import { JobItemDetails, JobItems } from "./types";
 import { API_URL } from "./constants";
+import { useQuery } from "@tanstack/react-query";
+import { JobItems } from "./types";
+
+export function useParamId() {
+  const [param, setParam] = useState<number | null>(null);
+  useEffect(() => {
+    const handleHashChange = () => {
+      const id = +window.location.hash.slice(1);
+      setParam(id);
+    };
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+  return param;
+}
+
+export function useDisplayedItem(paramId: number | null) {
+  const { data, isLoading } = useQuery({
+    queryKey: ["job-item", paramId],
+    queryFn: async () => {
+      const res = await fetch(`${API_URL}/${paramId}`);
+      if (res.ok) {
+        const data = await res.json();
+        return data;
+      } else {
+        throw new Error("404: Bad request");
+      }
+    },
+    onError: () => {
+      console.error("Error fetching job item: ");
+    },
+    enabled: Boolean(paramId),
+  });
+  const jobItem = data?.jobItem;
+  return [jobItem, isLoading] as const;
+}
 
 export function useJobItems(searchText: string) {
   const [jobItems, setJobItems] = useState<JobItems[]>([]);
@@ -21,45 +60,6 @@ export function useJobItems(searchText: string) {
     fetchData();
   }, [searchText]);
   return { isLoading, jobItems: slicedJobItems, totalJobCount } as const;
-}
-
-export function useParamId() {
-  const [param, setParam] = useState<number | null>(null);
-  useEffect(() => {
-    const handleHashChange = () => {
-      const id = +window.location.hash.slice(1);
-      setParam(id);
-    };
-    handleHashChange();
-    window.addEventListener("hashchange", handleHashChange);
-
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange);
-    };
-  }, []);
-  return param;
-}
-
-export function useDisplayedItem(paramId: number | null) {
-  const [displayedItem, setDisplayedItem] = useState<JobItemDetails | null>(
-    null
-  );
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (!paramId) return;
-    setIsLoading(true);
-    const fetchData = async () => {
-      const res = await fetch(`${API_URL}/${paramId}`);
-      if (res.ok) {
-        const data = await res.json();
-        setIsLoading(false);
-        setDisplayedItem(data.jobItem);
-      }
-    };
-    fetchData();
-  }, [paramId]);
-  return [displayedItem, isLoading] as const;
 }
 
 export function useDebounce<T>(value: T, delay = 500): T {
