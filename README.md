@@ -8,13 +8,12 @@ This app will consume an API to get information about software engineering jobs 
 
 #### Front-end
 
-- JavaScript
 - TypeScript
 - React
 - HTML
 - CSS
 - Radix-UI
-- Tanstack Query
+- Tanstack React Query
 
 
 #### Development Tools
