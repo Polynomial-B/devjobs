@@ -34,3 +34,8 @@ export type ContainerProps = {
   isActive?: boolean;
   totalJobCount?: number;
 };
+
+export type JobItemAPIResponse = {
+  jobItem: JobItemDetails;
+  public: boolean;
+};

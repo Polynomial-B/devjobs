@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "./constants";
 import { useQuery } from "@tanstack/react-query";
-import { JobItems } from "./types";
+import { JobItemAPIResponse, JobItems } from "./types";
 
 export function useParamId() {
   const [param, setParam] = useState<number | null>(null);
@@ -20,13 +20,15 @@ export function useParamId() {
   return param;
 }
 
-const fetchJobItem = async (paramId: number | null) => {
+const fetchJobItem = async (
+  paramId: number | null
+): Promise<JobItemAPIResponse> => {
   const res = await fetch(`${API_URL}/${paramId}`);
   if (res.ok) {
     const data = await res.json();
     return data;
   } else {
-    throw new Error("404: Bad request");
+    throw new Error(`Error! ${res.status}: ${res.statusText}`);
   }
 };
 
@@ -35,7 +37,7 @@ export function useDisplayedItem(paramId: number | null) {
     queryKey: ["job-item", paramId],
     queryFn: () => fetchJobItem(paramId),
     onError: () => {
-      console.error("Error fetching job item: ");
+      console.error("Error fetching job item.");
     },
     enabled: !!paramId, // same as Boolean(paramId)
   });
