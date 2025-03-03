@@ -39,3 +39,9 @@ export type JobItemAPIResponse = {
   jobItem: JobItemDetails;
   public: boolean;
 };
+
+export type AllJobItemsAPIResponse = {
+  jobItems: JobItems[];
+  public: boolean;
+  sorted: boolean;
+};

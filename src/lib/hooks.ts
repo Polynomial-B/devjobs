@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "./constants";
 import { useQuery } from "@tanstack/react-query";
-import { JobItemAPIResponse, JobItems } from "./types";
+import { AllJobItemsAPIResponse, JobItemAPIResponse, JobItems } from "./types";
 
 export function useParamId() {
   const [param, setParam] = useState<number | null>(null);
@@ -45,25 +45,25 @@ export function useDisplayedItem(paramId: number | null) {
   return [jobItem, isLoading] as const;
 }
 
+const fetchAllJobItems = async (
+  searchText: string
+): Promise<AllJobItemsAPIResponse> => {
+  const res = await fetch(`${API_URL}?search=${searchText}`);
+  const data = await res.json();
+  return data;
+};
+
 export function useJobItems(searchText: string) {
-  const [jobItems, setJobItems] = useState<JobItems[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const slicedJobItems = jobItems.slice(0, 7);
-  const totalJobCount = jobItems.length;
-
-  useEffect(() => {
-    if (!searchText) return;
-
-    const fetchData = async () => {
-      setIsLoading(true);
-      const res = await fetch(`${API_URL}?search=${searchText}`);
-      const data = await res.json();
-      setIsLoading(false);
-      setJobItems(data.jobItems);
-    };
-    fetchData();
-  }, [searchText]);
-  return { isLoading, jobItems: slicedJobItems, totalJobCount } as const;
+  const { data, isLoading } = useQuery({
+    queryKey: ["job-items", searchText],
+    queryFn: () => fetchAllJobItems(searchText),
+    onError: () => {
+      console.error("Error fetching data.");
+    },
+    enabled: !!searchText,
+  });
+  const jobItems = data?.jobItems;
+  return { jobItems, isLoading } as const;
 }
 
 export function useDebounce<T>(value: T, delay = 500): T {
