@@ -33,14 +33,14 @@ const fetchJobItem = async (
 };
 
 export function useDisplayedItem(paramId: number | null) {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["job-item", paramId],
     queryFn: () => fetchJobItem(paramId),
-    onError: () => {
-      console.error("Error fetching job item.");
-    },
     enabled: !!paramId, // same as Boolean(paramId)
   });
+  if (error) {
+    console.error(error);
+  }
   const jobItem = data?.jobItem;
   return [jobItem, isLoading] as const;
 }
@@ -49,19 +49,23 @@ const fetchAllJobItems = async (
   searchText: string
 ): Promise<AllJobItemsAPIResponse> => {
   const res = await fetch(`${API_URL}?search=${searchText}`);
-  const data = await res.json();
-  return data;
+  if (res.ok) {
+    const data = await res.json();
+    return data;
+  } else {
+    throw new Error(`Error! ${res.status}: ${res.statusText}`);
+  }
 };
 
 export function useJobItems(searchText: string) {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["job-items", searchText],
     queryFn: () => fetchAllJobItems(searchText),
-    onError: () => {
-      console.error("Error fetching data.");
-    },
     enabled: !!searchText,
   });
+  if (error) {
+    console.error(error);
+  }
   const jobItems = data?.jobItems;
   return { jobItems, isLoading } as const;
 }
