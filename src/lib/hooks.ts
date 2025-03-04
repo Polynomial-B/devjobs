@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "./constants";
 import { useQuery } from "@tanstack/react-query";
-import { AllJobItemsAPIResponse, JobItemAPIResponse, JobItems } from "./types";
+import { AllJobItemsAPIResponse, JobItemAPIResponse } from "./types";
+import toast from "react-hot-toast";
 
 export function useParamId() {
   const [param, setParam] = useState<number | null>(null);
@@ -28,7 +29,7 @@ const fetchJobItem = async (
     const data = await res.json();
     return data;
   } else {
-    throw new Error(`Error! ${res.status}: ${res.statusText}`);
+    throw new Error(res.status + res.statusText);
   }
 };
 
@@ -53,7 +54,7 @@ const fetchAllJobItems = async (
     const data = await res.json();
     return data;
   } else {
-    throw new Error(`Error! ${res.status}: ${res.statusText}`);
+    throw new Error(res.status + res.statusText);
   }
 };
 
@@ -65,6 +66,7 @@ export function useJobItems(searchText: string) {
   });
   if (error) {
     console.error(error);
+    toast.error(error.message);
   }
   const jobItems = data?.jobItems;
   return { jobItems, isLoading } as const;

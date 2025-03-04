@@ -4,6 +4,7 @@ import Container from "./components/Container";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { useDebounce, useJobItems } from "./lib/hooks";
+import { Toaster } from "react-hot-toast";
 
 function App() {
 	const [searchText, setSearchText] = useState("");
@@ -22,6 +23,7 @@ function App() {
 				totalJobCount={totalJobCount}
 			/>
 			<Footer />
+			<Toaster position="top-right" />
 		</>
 	);
 }
