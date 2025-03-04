@@ -40,7 +40,10 @@ export function useDisplayedItem(paramId: number | null) {
     enabled: !!paramId, // same as Boolean(paramId)
   });
   if (error) {
-    console.error(error);
+    if (error instanceof Error) {
+      console.error(error);
+      toast.error(error.message);
+    }
   }
   const jobItem = data?.jobItem;
   return [jobItem, isLoading] as const;
@@ -65,8 +68,10 @@ export function useJobItems(searchText: string) {
     enabled: !!searchText,
   });
   if (error) {
-    console.error(error);
-    toast.error(error.message);
+    if (error instanceof Error) {
+      console.error(error);
+      toast.error(error.message);
+    }
   }
   const jobItems = data?.jobItems;
   return { jobItems, isLoading } as const;
