@@ -8,6 +8,9 @@ export default function Sidebar({
 	jobItems,
 	isLoading,
 	totalJobCount,
+	handleChangePage,
+	currentPage,
+	totalPageNumber,
 }: ContainerProps) {
 	return (
 		<div className="sidebar">
@@ -16,7 +19,11 @@ export default function Sidebar({
 				<SortingControls />
 			</div>
 			<JobList jobItems={jobItems} isLoading={isLoading} />
-			<PaginationControls />
+			<PaginationControls
+				handleChangePage={handleChangePage}
+				currentPage={currentPage}
+				totalPageNumber={totalPageNumber}
+			/>
 		</div>
 	);
 }

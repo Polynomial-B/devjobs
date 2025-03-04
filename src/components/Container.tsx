@@ -6,6 +6,9 @@ export default function Container({
 	jobItems,
 	isLoading,
 	totalJobCount,
+	handleChangePage,
+	currentPage,
+	totalPageNumber,
 }: ContainerProps) {
 	return (
 		<div className="container">
@@ -13,6 +16,9 @@ export default function Container({
 				jobItems={jobItems}
 				isLoading={isLoading}
 				totalJobCount={totalJobCount}
+				handleChangePage={handleChangePage}
+				currentPage={currentPage}
+				totalPageNumber={totalPageNumber}
 			/>
 			<JobItemContent />
 		</div>

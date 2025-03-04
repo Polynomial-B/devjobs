@@ -33,6 +33,9 @@ export type ContainerProps = {
   isLoading?: boolean;
   isActive?: boolean;
   totalJobCount?: number;
+  handleChangePage?: (direction: "next" | "previous") => void;
+  currentPage?: number;
+  totalPageNumber?: number;
 };
 
 export type JobItemAPIResponse = {
