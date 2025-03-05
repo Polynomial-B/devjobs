@@ -1,4 +1,4 @@
-import { ContainerProps } from "../lib/types";
+import { ContainerProps, SortingButtonProps } from "../lib/types";
 
 export default function SortingControls({
 	handleSortBy,
@@ -7,11 +7,8 @@ export default function SortingControls({
 	return (
 		<section className="sorting">
 			<i className="fa-solid fa-arrow-down-short-wide"></i>
-
-			<button
-				className={`sorting__button sorting__button--${
-					sortBy === "relevant" ? "active" : "relevant"
-				}`}
+			<SortingButton
+				sortBy={sortBy}
 				onClick={(e: React.MouseEvent<HTMLElement>) => {
 					if (handleSortBy) {
 						handleSortBy("relevant");
@@ -19,13 +16,10 @@ export default function SortingControls({
 					}
 				}}
 			>
-				Relevant
-			</button>
-
-			<button
-				className={`sorting__button sorting__button--${
-					sortBy === "recent" ? "active" : "relevant"
-				}`}
+				relevant
+			</SortingButton>
+			<SortingButton
+				sortBy={sortBy}
 				onClick={(e: React.MouseEvent<HTMLElement>) => {
 					if (handleSortBy) {
 						handleSortBy("recent");
@@ -33,8 +27,21 @@ export default function SortingControls({
 					}
 				}}
 			>
-				Recent
-			</button>
+				recent
+			</SortingButton>
 		</section>
+	);
+}
+
+function SortingButton({ children, onClick, sortBy }: SortingButtonProps) {
+	return (
+		<button
+			className={`sorting__button sorting__button--${
+				sortBy === children ? "active" : children
+			}`}
+			onClick={onClick}
+		>
+			{children}
+		</button>
 	);
 }

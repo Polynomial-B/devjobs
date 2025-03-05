@@ -1,3 +1,5 @@
+import { MouseEventHandler, ReactNode } from "react";
+
 export type JobItems = {
   id: number;
   badgeLetters: string;
@@ -53,3 +55,9 @@ export type AllJobItemsAPIResponse = {
 
 export type SortBy = "relevant" | "recent";
 export type Direction = "next" | "previous";
+
+export type SortingButtonProps = {
+  children: ReactNode;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  sortBy?: string;
+};
