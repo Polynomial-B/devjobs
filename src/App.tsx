@@ -13,14 +13,13 @@ function App() {
 	const debouncedSearchText = useDebounce(searchText, 300);
 	const { jobItems, isLoading } = useJobItems(debouncedSearchText);
 	const [sortBy, setSortBy] = useState<SortBy>("relevant");
-	const jobItemsSorted =
-		jobItems?.sort((a, b) => {
-			if (sortBy === "relevant") {
-				return b.relevanceScore - a.relevanceScore;
-			} else {
-				return a.daysAgo - b.daysAgo;
-			}
-		}) || [];
+	const jobItemsSorted = structuredClone(jobItems || []).sort((a, b) => {
+		if (sortBy === "relevant") {
+			return b.relevanceScore - a.relevanceScore;
+		} else {
+			return a.daysAgo - b.daysAgo;
+		}
+	});
 	const slicedJobItems =
 		jobItemsSorted.slice(
 			currentPage * itemsPerPage - itemsPerPage,
