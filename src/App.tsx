@@ -1,18 +1,18 @@
 import { useState } from "react";
 import Background from "./components/Background";
 import Container from "./components/Container";
-import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { useDebounce, useJobItems } from "./lib/hooks";
 import { Toaster } from "react-hot-toast";
 import { itemsPerPage } from "./lib/constants";
+import { Direction, SortBy } from "./lib/types";
 
 function App() {
 	const [searchText, setSearchText] = useState("");
 	const [currentPage, setCurrentPage] = useState(1);
 	const debouncedSearchText = useDebounce(searchText, 300);
 	const { jobItems, isLoading } = useJobItems(debouncedSearchText);
-	const [sortBy, setSortBy] = useState<"relevant" | "recent">("relevant");
+	const [sortBy, setSortBy] = useState<SortBy>("relevant");
 	const jobItemsSorted =
 		jobItems?.sort((a, b) => {
 			if (sortBy === "relevant") {
@@ -30,7 +30,7 @@ function App() {
 	const totalJobCount = jobItems?.length || 0;
 	const totalPageNumber = Math.floor(totalJobCount / itemsPerPage);
 
-	const handleChangePage = (direction: "next" | "previous") => {
+	const handleChangePage = (direction: Direction) => {
 		if (direction === "next" && totalJobCount) {
 			setCurrentPage((prev) => prev + 1);
 		} else if (direction === "previous" && currentPage > 1) {
@@ -38,7 +38,7 @@ function App() {
 		}
 	};
 
-	const handleSortBy = (sortBy: "relevant" | "recent") => {
+	const handleSortBy = (sortBy: SortBy) => {
 		setCurrentPage(1);
 		setSortBy(sortBy);
 	};

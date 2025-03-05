@@ -1,3 +1,5 @@
+import { SetStateAction } from "react";
+
 export type JobItems = {
   id: number;
   badgeLetters: string;
@@ -50,3 +52,6 @@ export type AllJobItemsAPIResponse = {
   public: boolean;
   sorted: boolean;
 };
+
+export type SortBy = "relevant" | "recent";
+export type Direction = "next" | "previous";
