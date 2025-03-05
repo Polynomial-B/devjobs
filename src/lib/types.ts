@@ -1,5 +1,3 @@
-import { SetStateAction } from "react";
-
 export type JobItems = {
   id: number;
   badgeLetters: string;
