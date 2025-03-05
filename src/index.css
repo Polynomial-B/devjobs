@@ -555,18 +555,6 @@ body::-webkit-scrollbar {
 	visibility: hidden;
 }
 
-.pagination__button--next {
-	margin-left: auto;
-}
-
-.pagination__button--back .pagination__icon {
-	margin-right: 3px;
-}
-
-.pagination__button--next .pagination__icon {
-	margin-left: 3px;
-}
-
 .pagination__button > span {
 	font-weight: 500;
 }

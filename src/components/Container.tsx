@@ -9,6 +9,8 @@ export default function Container({
 	handleChangePage,
 	currentPage,
 	totalPageNumber,
+	handleSortBy,
+	sortBy,
 }: ContainerProps) {
 	return (
 		<div className="container">
@@ -19,6 +21,8 @@ export default function Container({
 				handleChangePage={handleChangePage}
 				currentPage={currentPage}
 				totalPageNumber={totalPageNumber}
+				handleSortBy={handleSortBy}
+				sortBy={sortBy}
 			/>
 			<JobItemContent />
 		</div>

@@ -11,12 +11,14 @@ export default function Sidebar({
 	handleChangePage,
 	currentPage,
 	totalPageNumber,
+	handleSortBy,
+	sortBy,
 }: ContainerProps) {
 	return (
 		<div className="sidebar">
 			<div className="sidebar__top">
 				<ResultsCount totalJobCount={totalJobCount} />
-				<SortingControls />
+				<SortingControls handleSortBy={handleSortBy} sortBy={sortBy} />
 			</div>
 			<JobList jobItems={jobItems} isLoading={isLoading} />
 			<PaginationControls

@@ -12,11 +12,21 @@ function App() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const debouncedSearchText = useDebounce(searchText, 300);
 	const { jobItems, isLoading } = useJobItems(debouncedSearchText);
+	const [sortBy, setSortBy] = useState<"relevant" | "recent">("relevant");
+	const jobItemsSorted =
+		jobItems?.sort((a, b) => {
+			if (sortBy === "relevant") {
+				return b.relevanceScore - a.relevanceScore;
+			} else {
+				return a.daysAgo - b.daysAgo;
+			}
+		}) || [];
 	const slicedJobItems =
-		jobItems?.slice(
+		jobItemsSorted.slice(
 			currentPage * itemsPerPage - itemsPerPage,
 			currentPage * itemsPerPage
 		) || [];
+
 	const totalJobCount = jobItems?.length || 0;
 	const totalPageNumber = Math.floor(totalJobCount / itemsPerPage);
 
@@ -26,6 +36,11 @@ function App() {
 		} else if (direction === "previous" && currentPage > 1) {
 			setCurrentPage((prev) => prev - 1);
 		}
+	};
+
+	const handleSortBy = (sortBy: "relevant" | "recent") => {
+		setCurrentPage(1);
+		setSortBy(sortBy);
 	};
 
 	return (
@@ -39,8 +54,9 @@ function App() {
 				handleChangePage={handleChangePage}
 				currentPage={currentPage}
 				totalPageNumber={totalPageNumber}
+				handleSortBy={handleSortBy}
+				sortBy={sortBy}
 			/>
-			<Footer />
 			<Toaster position="top-right" />
 		</>
 	);

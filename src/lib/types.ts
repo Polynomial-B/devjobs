@@ -36,6 +36,8 @@ export type ContainerProps = {
   handleChangePage?: (direction: "next" | "previous") => void;
   currentPage?: number;
   totalPageNumber?: number;
+  handleSortBy?: (sortBy: "relevant" | "recent") => void;
+  sortBy?: string;
 };
 
 export type JobItemAPIResponse = {
