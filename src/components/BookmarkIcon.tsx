@@ -9,7 +9,11 @@ export default function BookmarkIcon({ id }: { id: number }) {
 	return (
 		<button
 			className="bookmark-btn"
-			onClick={() => handleToggleBookmark(id)}
+			onClick={(e: React.MouseEvent<HTMLElement>) => {
+				e.preventDefault();
+				handleToggleBookmark(id);
+				e.stopPropagation();
+			}}
 		>
 			<HeartFilledIcon
 				className={bookmarkedIDs.includes(id) ? "filled" : ""}
