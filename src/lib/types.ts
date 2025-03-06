@@ -24,6 +24,7 @@ export type JobItemDetails = JobItems & {
 export type JobItemsProps = {
   jobItems: JobItems;
   isActive: boolean;
+  id: number;
 };
 export type HeaderProps = {
   searchText: string;
@@ -60,4 +61,9 @@ export type SortingButtonProps = {
   children: ReactNode;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   sortBy?: string;
+};
+
+export type BookmarksContextType = {
+  bookmarkedIDs: number[];
+  handleToggleBookmark: (id: number) => void;
 };

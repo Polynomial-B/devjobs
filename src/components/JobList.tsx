@@ -22,6 +22,7 @@ export function JobList({ jobItems, isLoading }: ContainerProps) {
 							key={jobItem.id}
 							jobItems={jobItem}
 							isActive={jobItem.id == paramId}
+							id={jobItem.id}
 						/>
 					);
 				})}

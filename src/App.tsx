@@ -13,6 +13,7 @@ function App() {
 	const debouncedSearchText = useDebounce(searchText, 300);
 	const { jobItems, isLoading } = useJobItems(debouncedSearchText);
 	const [sortBy, setSortBy] = useState<SortBy>("relevant");
+
 	const jobItemsSorted = structuredClone(jobItems || []).sort((a, b) => {
 		if (sortBy === "relevant") {
 			return b.relevanceScore - a.relevanceScore;
