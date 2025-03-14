@@ -351,12 +351,11 @@ body::-webkit-scrollbar {
 	transition: all 0.2s;
 }
 
-.job-item__right svg.filled {
-	color: #bc133d;
-}
-
+.bookmark-btn:hover svg,
+.bookmark-btn .filled,
+.job-item__right svg.filled,
 .job-item__bookmark-icon--bookmarked {
-	color: #bc133d;
+	color: #9b3297;
 }
 
 .job-item__time {
@@ -699,18 +698,10 @@ body::-webkit-scrollbar {
 	cursor: pointer;
 }
 
-.bookmark-btn:hover svg {
-	color: #bc133d;
-}
-
 .bookmark-btn {
 	color: #d7dbe0;
 	transition: all 0.2s;
 	font-size: 18px;
-}
-
-.bookmark-btn .filled {
-	color: #bc133d;
 }
 
 .job-info__company {
