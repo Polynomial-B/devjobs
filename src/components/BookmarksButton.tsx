@@ -9,7 +9,7 @@ export default function BookmarksButton() {
 		<section>
 			<button
 				className="bookmarks-btn"
-				onClick={() => setIsOpen(!isOpen)}
+				onClick={() => setIsOpen((prev) => !prev)}
 			>
 				Bookmarks <HeartIcon />
 			</button>
