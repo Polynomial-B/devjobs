@@ -1,8 +1,9 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useContext, useEffect, useState } from "react";
 import { API_URL } from "./constants";
 import { useQuery } from "@tanstack/react-query";
 import { AllJobItemsAPIResponse, JobItemAPIResponse } from "./types";
 import toast from "react-hot-toast";
+import { BookmarksContext } from "../contexts/BookmarksContext";
 
 export function useParamId() {
   const [param, setParam] = useState<number | null>(null);
@@ -100,4 +101,14 @@ export function useLocalStorage<T>(
     localStorage.setItem(key, JSON.stringify(value));
   }, [value, key]);
   return [value, setValue] as const;
+}
+
+export function useBookmarksContext() {
+  const context = useContext(BookmarksContext);
+  if (!context) {
+    throw new Error(
+      "useBookmarksContext must be used within BookmarksContextProvider"
+    );
+  }
+  return context;
 }
