@@ -1,6 +1,6 @@
 import { SetStateAction, useContext, useEffect, useState } from "react";
 import { API_URL } from "./constants";
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { AllJobItemsAPIResponse, JobItemAPIResponse } from "./types";
 import toast from "react-hot-toast";
 import { BookmarksContext } from "../contexts/BookmarksContext";
@@ -34,11 +34,11 @@ const fetchJobItem = async (
   }
 };
 
-export function useDisplayedItem(paramId: number | null) {
+export function useDisplayedItem(id: number | null) {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["job-item", paramId],
-    queryFn: () => fetchJobItem(paramId),
-    enabled: !!paramId, // same as Boolean(paramId)
+    queryKey: ["job-item", id],
+    queryFn: () => fetchJobItem(id),
+    enabled: !!id, // same as Boolean(paramId)
   });
   if (error) {
     if (error instanceof Error) {
@@ -62,7 +62,7 @@ const fetchAllJobItems = async (
   }
 };
 
-export function useJobItems(searchText: string) {
+export function useSearch(searchText: string) {
   const { data, isLoading, error } = useQuery({
     queryKey: ["job-items", searchText],
     queryFn: () => fetchAllJobItems(searchText),
@@ -112,3 +112,17 @@ export function useBookmarksContext() {
   }
   return context;
 }
+
+export const useJobItems = (ids: number[]) => {
+  const results = useQueries({
+    queries: ids.map((id) => ({
+      queryKey: ["job-item", id],
+      queryFn: () => fetchJobItem(id),
+    })),
+  });
+  const jobItems = results
+    .map((result) => result.data?.jobItem)
+    .filter((jobItem) => jobItem !== undefined);
+  const isLoading = results.some((result) => result.isLoading);
+  return { jobItems, isLoading };
+};

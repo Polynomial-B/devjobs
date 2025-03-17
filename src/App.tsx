@@ -2,7 +2,7 @@ import { useState } from "react";
 import Background from "./components/Background";
 import Container from "./components/Container";
 import Header from "./components/Header";
-import { useDebounce, useJobItems } from "./lib/hooks";
+import { useDebounce, useSearch } from "./lib/hooks";
 import { Toaster } from "react-hot-toast";
 import { itemsPerPage } from "./lib/constants";
 import { Direction, SortBy } from "./lib/types";
@@ -11,7 +11,7 @@ function App() {
 	const [searchText, setSearchText] = useState("");
 	const [currentPage, setCurrentPage] = useState(1);
 	const debouncedSearchText = useDebounce(searchText, 300);
-	const { jobItems, isLoading } = useJobItems(debouncedSearchText);
+	const { jobItems, isLoading } = useSearch(debouncedSearchText);
 	const [sortBy, setSortBy] = useState<SortBy>("relevant");
 
 	const jobItemsSorted = structuredClone(jobItems || []).sort((a, b) => {

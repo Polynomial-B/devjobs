@@ -66,4 +66,6 @@ export type SortingButtonProps = {
 export type BookmarksContextType = {
   bookmarkedIDs: number[];
   handleToggleBookmark: (id: number) => void;
+  bookmarkedJobItems: JobItemDetails[];
+  isLoading: boolean;
 };

@@ -3,8 +3,8 @@ import BookmarkIcon from "./BookmarkIcon";
 import Spinner from "./Spinner";
 
 export default function JobItemContent() {
-	const paramId = useParamId();
-	const [displayedItem, isLoading] = useDisplayedItem(paramId);
+	const id = useParamId();
+	const [displayedItem, isLoading] = useDisplayedItem(id);
 
 	if (isLoading) {
 		return (
