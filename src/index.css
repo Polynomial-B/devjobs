@@ -191,6 +191,7 @@ body::-webkit-scrollbar {
 	flex-direction: column;
 	scrollbar-color: #cacdd0 #f4f5f7;
 	scrollbar-width: thin;
+	min-height: 140px;
 }
 
 .job-list::-webkit-scrollbar {
