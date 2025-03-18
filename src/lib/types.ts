@@ -26,10 +26,6 @@ export type JobItemsProps = {
   isActive: boolean;
   id: number;
 };
-export type HeaderProps = {
-  searchText: string;
-  setSearchText: React.Dispatch<React.SetStateAction<string>>;
-};
 
 export type ContainerProps = {
   jobItems?: JobItems[];
@@ -72,4 +68,21 @@ export type BookmarksContextType = {
 
 export type ActiveIDContextType = {
   paramId: number | null;
+};
+export type SearchTextContextType = {
+  debouncedSearchText: string;
+  searchText: string;
+  handleChangeSearchText: (newSearchText: string) => void;
+};
+
+export type JobItemsContextType = {
+  jobItems: JobItems[] | undefined;
+  slicedJobItems: JobItems[];
+  isLoading: boolean;
+  totalJobCount: number;
+  totalPageNumber: number;
+  currentPage: number;
+  sortBy: SortBy;
+  handleChangePage: (direction: Direction) => void;
+  handleSortBy: (sortBy: SortBy) => void;
 };

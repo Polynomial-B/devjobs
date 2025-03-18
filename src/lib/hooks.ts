@@ -5,6 +5,8 @@ import { AllJobItemsAPIResponse, JobItemAPIResponse } from "./types";
 import toast from "react-hot-toast";
 import { BookmarksContext } from "../contexts/BookmarksContext";
 import { ActiveIDContext } from "../contexts/ActiveIDContext";
+import { SearchTextContext } from "../contexts/SearchTextContext";
+import { JobItemsContext } from "../contexts/JobItemsContext";
 
 export function useParamId() {
   const [paramId, setParam] = useState<number | null>(null);
@@ -119,6 +121,24 @@ export function useActiveIDContext() {
   if (!context) {
     throw new Error(
       "useActiveIDContext must be used within ActiveIDContextProvider"
+    );
+  }
+  return context;
+}
+export function useSearchTextContext() {
+  const context = useContext(SearchTextContext);
+  if (!context) {
+    throw new Error(
+      "useSearchTextContext must be used within SearchTextContextProvider"
+    );
+  }
+  return context;
+}
+export function useJobItemsContext() {
+  const context = useContext(JobItemsContext);
+  if (!context) {
+    throw new Error(
+      "useJobItemsContext must be used within JobItemsContextProvider"
     );
   }
   return context;

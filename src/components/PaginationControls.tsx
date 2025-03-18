@@ -1,11 +1,10 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
-import { ContainerProps } from "../lib/types";
+import { useJobItemsContext } from "../lib/hooks";
 
-export default function PaginationControls({
-	handleChangePage,
-	currentPage,
-	totalPageNumber,
-}: ContainerProps) {
+export default function PaginationControls() {
+	const { currentPage, handleChangePage, totalPageNumber } =
+		useJobItemsContext();
+
 	return (
 		<section className="pagination">
 			<button
