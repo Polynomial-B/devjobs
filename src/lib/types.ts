@@ -69,3 +69,7 @@ export type BookmarksContextType = {
   bookmarkedJobItems: JobItemDetails[];
   isLoading: boolean;
 };
+
+export type ActiveIDContextType = {
+  paramId: number | null;
+};

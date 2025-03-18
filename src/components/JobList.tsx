@@ -1,10 +1,10 @@
-import { useParamId } from "../lib/hooks";
+import { useActiveIDContext } from "../lib/hooks";
 import { ContainerProps, JobItems } from "../lib/types";
 import JobListItem from "./JobListItem";
 import Spinner from "./Spinner";
 
 export function JobList({ jobItems, isLoading }: ContainerProps) {
-	const paramId = useParamId();
+	const { paramId } = useActiveIDContext();
 	if (isLoading) {
 		return (
 			<ul className="job-list">

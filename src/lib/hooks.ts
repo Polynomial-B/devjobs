@@ -4,9 +4,10 @@ import { useQueries, useQuery } from "@tanstack/react-query";
 import { AllJobItemsAPIResponse, JobItemAPIResponse } from "./types";
 import toast from "react-hot-toast";
 import { BookmarksContext } from "../contexts/BookmarksContext";
+import { ActiveIDContext } from "../contexts/ActiveIDContext";
 
 export function useParamId() {
-  const [param, setParam] = useState<number | null>(null);
+  const [paramId, setParam] = useState<number | null>(null);
   useEffect(() => {
     const handleHashChange = () => {
       const id = +window.location.hash.slice(1);
@@ -19,7 +20,7 @@ export function useParamId() {
       window.removeEventListener("hashchange", handleHashChange);
     };
   }, []);
-  return param;
+  return paramId;
 }
 
 const fetchJobItem = async (
@@ -108,6 +109,16 @@ export function useBookmarksContext() {
   if (!context) {
     throw new Error(
       "useBookmarksContext must be used within BookmarksContextProvider"
+    );
+  }
+  return context;
+}
+
+export function useActiveIDContext() {
+  const context = useContext(ActiveIDContext);
+  if (!context) {
+    throw new Error(
+      "useActiveIDContext must be used within ActiveIDContextProvider"
     );
   }
   return context;

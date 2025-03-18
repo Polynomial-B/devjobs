@@ -1,10 +1,10 @@
-import { useDisplayedItem, useParamId } from "../lib/hooks";
+import { useActiveIDContext, useDisplayedItem } from "../lib/hooks";
 import BookmarkIcon from "./BookmarkIcon";
 import Spinner from "./Spinner";
 
 export default function JobItemContent() {
-	const id = useParamId();
-	const [displayedItem, isLoading] = useDisplayedItem(id);
+	const { paramId } = useActiveIDContext();
+	const [displayedItem, isLoading] = useDisplayedItem(paramId);
 
 	if (isLoading) {
 		return (
