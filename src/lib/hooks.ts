@@ -126,3 +126,24 @@ export const useJobItems = (ids: number[]) => {
   const isLoading = results.some((result) => result.isLoading);
   return { jobItems, isLoading };
 };
+
+export function useOnClickOutside(
+  refs: [React.RefObject<HTMLButtonElement>, React.RefObject<HTMLDivElement>],
+  callbackFunction: () => void
+) {
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (
+        e.target instanceof HTMLElement &&
+        refs.every((ref) => !ref.current?.contains(e.target as Node))
+      ) {
+        callbackFunction();
+      }
+    };
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, [refs, callbackFunction]);
+}
