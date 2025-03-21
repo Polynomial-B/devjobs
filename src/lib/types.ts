@@ -50,8 +50,8 @@ export type AllJobItemsAPIResponse = {
   sorted: boolean;
 };
 
-export type SortBy = "relevant" | "recent";
-export type Direction = "next" | "previous";
+export type SortByType = "relevant" | "recent";
+export type DirectionType = "next" | "previous";
 
 export type SortingButtonProps = {
   children: ReactNode;
