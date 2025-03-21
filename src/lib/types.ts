@@ -82,7 +82,7 @@ export type JobItemsContextType = {
   totalJobCount: number;
   totalPageNumber: number;
   currentPage: number;
-  sortBy: SortBy;
-  handleChangePage: (direction: Direction) => void;
-  handleSortBy: (sortBy: SortBy) => void;
+  sortBy: SortByType;
+  handleChangePage: (direction: DirectionType) => void;
+  handleSortBy: (sortBy: SortByType) => void;
 };
