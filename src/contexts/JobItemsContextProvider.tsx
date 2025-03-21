@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { useSearch, useSearchTextContext } from "../lib/hooks";
 import { Direction, SortBy } from "../lib/types";
 import { JobItemsContext } from "./JobItemsContext";
@@ -15,18 +15,26 @@ export default function JobItemsContextProvider({
 	const { jobItems, isLoading } = useSearch(debouncedSearchText);
 	const [sortBy, setSortBy] = useState<SortBy>("relevant");
 
-	const jobItemsSorted = structuredClone(jobItems || []).sort((a, b) => {
-		if (sortBy === "relevant") {
-			return b.relevanceScore - a.relevanceScore;
-		} else {
-			return a.daysAgo - b.daysAgo;
-		}
-	});
-	const slicedJobItems =
-		jobItemsSorted.slice(
-			currentPage * itemsPerPage - itemsPerPage,
-			currentPage * itemsPerPage
-		) || [];
+	const jobItemsSorted = useMemo(
+		() =>
+			structuredClone(jobItems || []).sort((a, b) => {
+				if (sortBy === "relevant") {
+					return b.relevanceScore - a.relevanceScore;
+				} else {
+					return a.daysAgo - b.daysAgo;
+				}
+			}),
+		[sortBy, jobItems]
+	);
+
+	const slicedJobItems = useMemo(
+		() =>
+			jobItemsSorted.slice(
+				currentPage * itemsPerPage - itemsPerPage,
+				currentPage * itemsPerPage
+			) || [],
+		[currentPage, jobItemsSorted]
+	);
 
 	const totalJobCount = jobItems?.length || 0;
 	const totalPageNumber = Math.floor(totalJobCount / itemsPerPage);
